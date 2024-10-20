@@ -1,0 +1,16 @@
+.notFoundContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #32064c, #5c2676 50%, #32064c);
+  overflow: hidden;
+}
+
+.image {
+  height: auto;
+  max-height: 100vh;
+  width: 100%;
+  object-fit: contain;
+}
