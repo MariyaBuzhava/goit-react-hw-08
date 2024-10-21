@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import AppBar from "./AppBar/AppBar";
+import AppBar from "./AppBar/AppBar.jsx";
 
-const Layout = () => {
+const Layout = ({ isLoggedIn, user }) => {
   return (
     <div>
-      <AppBar />
+      <AppBar isLoggedIn={isLoggedIn} user={user} />
       <Outlet />
     </div>
   );

@@ -1,0 +1,33 @@
+.userMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.userName {
+  font-size: 18px;
+  margin: 0;
+}
+
+.exitButton {
+  text-decoration: none;
+  color: #6a0dad;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s;
+  border: none;
+  cursor: pointer;
+  margin-left: 15px;
+  &:hover {
+    background-color: rgba(106, 13, 173, 0.2);
+    color: #4b0082;
+  }
+  &:active {
+    background-color: #6a0dad;
+    color: white;
+  }
+}
