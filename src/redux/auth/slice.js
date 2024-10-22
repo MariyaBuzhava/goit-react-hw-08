@@ -1,23 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login, logout, register } from "./operations";
-
-export const refreshUserAsync = createAsyncThunk(
-  "auth/refreshUser",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch("/api/refreshUser"); // Замініть на ваш API-запит
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Could not refresh user");
-      }
-
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { login, logout, refreshUser, register } from "./operations";
 
 const initialState = {
   user: { name: null, email: null },
@@ -43,16 +25,16 @@ const sliceAuth = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(logout.fulfilled, () => initialState)
-      .addCase(refreshUserAsync.pending, (state) => {
+      .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUserAsync.fulfilled, (state, action) => {
+      .addCase(refreshUser.fulfilled, (state, action) => {
         state.isRefreshing = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
         state.isLoggedIn = true;
       })
-      .addCase(refreshUserAsync.rejected, (state) => {
+      .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
       });
   },

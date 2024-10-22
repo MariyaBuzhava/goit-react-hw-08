@@ -6,10 +6,12 @@ import {
   selectUser,
   selectIsRefreshing,
 } from "./redux/auth/selectors";
-import { refreshUserAsync } from "./redux/auth/slice";
 import Layout from "./components/Layout";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import "./App.css";
+import { refreshUser } from "./redux/auth/operations";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
@@ -26,7 +28,7 @@ function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refreshUserAsync());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   if (isRefreshing) {
@@ -41,9 +43,30 @@ function App() {
           element={<Layout isLoggedIn={isLoggedIn} user={user} />}
         >
           <Route index element={<HomePage />} />
-          <Route path="register" element={<RegistrationPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="contacts" element={<ContactsPage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegistrationPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
