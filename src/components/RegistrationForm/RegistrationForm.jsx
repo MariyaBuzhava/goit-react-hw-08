@@ -26,7 +26,6 @@ const RegistrationForm = () => {
   });
 
   const handleSubmit = (values, options) => {
-    console.log("Registration Form Values:", values);
     dispatch(register(values));
     options.resetForm();
   };

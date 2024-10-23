@@ -10,7 +10,7 @@ const Contact = ({ id, name, number }) => {
   const [updatedNumber, setUpdatedNumber] = useState(number);
 
   const handleUpdate = () => {
-    const updates = { name: updatedName, phone: updatedNumber };
+    const updates = { name: updatedName, number: updatedNumber };
     dispatch(updateContact({ id, updates }));
     setIsEditing(false);
   };
@@ -24,11 +24,13 @@ const Contact = ({ id, name, number }) => {
         <div className={s.contact}>
           <input
             type="text"
+            className={s.input}
             value={updatedName}
             onChange={(e) => setUpdatedName(e.target.value)}
           />
           <input
             type="text"
+            className={s.input}
             value={updatedNumber}
             onChange={(e) => setUpdatedNumber(e.target.value)}
           />
@@ -43,25 +45,17 @@ const Contact = ({ id, name, number }) => {
         <div className={s.contact}>
           <span>{name}</span>
           <span>{number}</span>
-          <button className={s.button} onClick={() => setIsEditing(true)}>
-            Edit
-          </button>
-          <button className={s.button} onClick={handleDeleteContact}>
-            Delete
-          </button>
+          <div className={s.containerBtn}>
+            <button className={s.button} onClick={() => setIsEditing(true)}>
+              Edit
+            </button>
+            <button className={s.button} onClick={handleDeleteContact}>
+              Delete
+            </button>
+          </div>
         </div>
       )}
     </label>
-
-    // <label htmlFor={id} className={s.lable}>
-    //   <div className={s.contact}>
-    //     <span>{name}</span>
-    //     <span>{number}</span>
-    //   </div>
-    //   <button className={s.button} onClick={handleDeleteContact}>
-    //     Delete
-    //   </button>
-    // </label>
   );
 };
 

@@ -15,16 +15,36 @@
   border: 1px solid #ab47bc;
 }
 
+.input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ab47bc;
+  width: 80%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+
+  &:focus {
+    border-color: #8e24aa;
+    outline: none;
+    box-shadow: 0 0 5px rgba(142, 36, 170, 0.5);
+  }
+}
+
 .button {
   background-color: #8e24aa;
   color: white;
   border: none;
   padding: 8px 10px;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin: 0 5px;
   cursor: pointer;
   transition: all 0.4s ease;
   &:hover {
     background-color: #8e24aa;
   }
+}
+.containerBtn {
+  display: flex;
+  gap: 5px;
 }
