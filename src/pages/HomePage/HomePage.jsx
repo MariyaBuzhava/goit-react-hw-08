@@ -1,8 +1,14 @@
 import c from "./HomePage.module.css";
+import { motion } from "framer-motion";
 
 const HomePage = () => {
   return (
-    <div className={c.homepage}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className={c.homepage}
+    >
       <div className={c.hero}>
         <h1 className={c.title}>Welcome to MyContacts</h1>
         <p className={c.description}>
@@ -10,7 +16,7 @@ const HomePage = () => {
           them with a single click!
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

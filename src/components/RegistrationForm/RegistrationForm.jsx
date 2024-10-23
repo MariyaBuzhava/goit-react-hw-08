@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
+import { motion } from "framer-motion";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,12 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className={c.formContainer}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className={c.formContainer}
+    >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -68,7 +74,7 @@ const RegistrationForm = () => {
           <button type="submit">Register</button>
         </Form>
       </Formik>
-    </div>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { login } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,12 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={c.formContainer}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className={c.formContainer}
+    >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -63,7 +69,7 @@ const LoginForm = () => {
           <button type="submit">Login</button>
         </Form>
       </Formik>
-    </div>
+    </motion.div>
   );
 };
 
